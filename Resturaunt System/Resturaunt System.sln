@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37502.11
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resturaunt System", "Resturaunt System.csproj", "{75DD2A6C-71A8-413F-B39D-874A219A772D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resturaunt Manage System Business Layer", "..\Resturaunt Manage System Business Layer\Resturaunt Manage System Business Layer.csproj", "{9FF8E9BB-C963-4E62-8E27-7DDD118E265E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resturaunt Manage Sysrem DataAccess Layer", "..\Resturaunt Manage Sysrem DataAccess Layer\Resturaunt Manage Sysrem DataAccess Layer.csproj", "{8FAC6027-4030-4C9F-9D81-FFF7BF20225D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75DD2A6C-71A8-413F-B39D-874A219A772D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DD2A6C-71A8-413F-B39D-874A219A772D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DD2A6C-71A8-413F-B39D-874A219A772D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DD2A6C-71A8-413F-B39D-874A219A772D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FF8E9BB-C963-4E62-8E27-7DDD118E265E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FF8E9BB-C963-4E62-8E27-7DDD118E265E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FF8E9BB-C963-4E62-8E27-7DDD118E265E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FF8E9BB-C963-4E62-8E27-7DDD118E265E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FAC6027-4030-4C9F-9D81-FFF7BF20225D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FAC6027-4030-4C9F-9D81-FFF7BF20225D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FAC6027-4030-4C9F-9D81-FFF7BF20225D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAC6027-4030-4C9F-9D81-FFF7BF20225D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {012B1092-8B43-419E-9A07-687CBC5E4864}
+	EndGlobalSection
+EndGlobal

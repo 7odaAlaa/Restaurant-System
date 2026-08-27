@@ -1,0 +1,19 @@
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt System.exe.config
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt System.exe
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt System.pdb
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt System.csproj.AssemblyReference.cache
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt_System.Main.resources
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt_System.ManageMenu.resources
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt_System.MenuItem.resources
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt_System.Properties.Resources.resources
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt System.csproj.GenerateResource.cache
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt System.csproj.CoreCompileInputs.cache
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt System.exe
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt System.pdb
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt System.exe.config
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt Manage System Business Layer.dll
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt Manage System Business Layer.pdb
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturau.A8770640.Up2Date
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt Manage Sysrem DataAccess Layer.dll
+F:\Road Map\My Resturaunt\Resturaunt System\bin\Debug\Resturaunt Manage Sysrem DataAccess Layer.pdb
+F:\Road Map\My Resturaunt\Resturaunt System\obj\Debug\Resturaunt_System.SetEditMenuItem.resources
