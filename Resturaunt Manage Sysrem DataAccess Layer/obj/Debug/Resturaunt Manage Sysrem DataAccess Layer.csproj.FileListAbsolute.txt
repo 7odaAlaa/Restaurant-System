@@ -1,0 +1,6 @@
+F:\Road Map\My Resturaunt\Resturaunt Manage Sysrem DataAccess Layer\bin\Debug\Resturaunt Manage Sysrem DataAccess Layer.dll
+F:\Road Map\My Resturaunt\Resturaunt Manage Sysrem DataAccess Layer\bin\Debug\Resturaunt Manage Sysrem DataAccess Layer.pdb
+F:\Road Map\My Resturaunt\Resturaunt Manage Sysrem DataAccess Layer\obj\Debug\Resturaunt Manage Sysrem DataAccess Layer.csproj.AssemblyReference.cache
+F:\Road Map\My Resturaunt\Resturaunt Manage Sysrem DataAccess Layer\obj\Debug\Resturaunt Manage Sysrem DataAccess Layer.csproj.CoreCompileInputs.cache
+F:\Road Map\My Resturaunt\Resturaunt Manage Sysrem DataAccess Layer\obj\Debug\Resturaunt Manage Sysrem DataAccess Layer.dll
+F:\Road Map\My Resturaunt\Resturaunt Manage Sysrem DataAccess Layer\obj\Debug\Resturaunt Manage Sysrem DataAccess Layer.pdb
