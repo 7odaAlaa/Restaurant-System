@@ -13,6 +13,7 @@ namespace Resturaunt_System
 {
     public partial class MenuItem : UserControl
     {
+        clsMenuItem _AnItem = null;
         public MenuItem()
         {
             InitializeComponent();
@@ -21,8 +22,11 @@ namespace Resturaunt_System
 
         public MenuItem(clsMenuItem AnItem)
         {
-            InitializeComponent();    
+            InitializeComponent();
+            _AnItem = AnItem;
+
             LoadInfo(AnItem);
+            
         }
 
        private void LoadInfo() 
@@ -45,7 +49,7 @@ namespace Resturaunt_System
 
         private void setOrEditItemDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           SetEditMenuItem frm = new SetEditMenuItem();
+           SetEditMenuItem frm = new SetEditMenuItem(_AnItem);
             frm.ShowDialog();
         }
     }
