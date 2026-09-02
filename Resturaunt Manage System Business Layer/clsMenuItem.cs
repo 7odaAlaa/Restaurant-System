@@ -10,12 +10,15 @@ namespace Resturaunt_Manage_System_Business_Layer
 {
     public class clsMenuItem
     {
+        public enum enType { Italian = 1 , Spanish  = 2  , Frenech = 3}
+
+
         public int ItemId { get; set; }
         public int SupplierId { get; set; }
         public string Name { get; set; } = "";
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public string Type { get; set; } = "";
+        public enType type { get; set; }
         public string ImageLink { get; set; }
         public bool IsAvailable { get; set; } = true;
         public DateTime CreatedAt { get; set; }
@@ -25,17 +28,18 @@ namespace Resturaunt_Manage_System_Business_Layer
         // Default constructor
         public clsMenuItem() 
         {
+            ImageLink = "";
         }
 
         // Parameterized constructor
-        public clsMenuItem(int supplierId, string name, decimal price, string type,
+        public clsMenuItem(int supplierId, string name, decimal price, enType type,
                         string description = null, string imageLink = null,
                         bool isAvailable = true)
         {
             SupplierId = supplierId;
             Name = name;
             Price = price;
-            Type = type;
+            type = type;
             Description = description;
             ImageLink = imageLink;
             IsAvailable = isAvailable;
@@ -48,7 +52,7 @@ namespace Resturaunt_Manage_System_Business_Layer
                                                      item.Name,
                                                      item.Description,
                                                      item.Price,
-                                                     item.Type,
+                                                     (int)item.type,
                                                      item.ImageLink,
                                                      item.IsAvailable,
                                                      ref newItemId);
@@ -62,8 +66,8 @@ namespace Resturaunt_Manage_System_Business_Layer
 
         public static clsMenuItem GetById(int itemId)
         {
-            int supplierId = 0;
-            string name = "", description = "", type = "", imageLink = "";
+            int supplierId = 0 , type = 0;
+            string name = "", description = "" , imageLink = "";
             decimal price = 0;
             bool isAvailable = false;
             DateTime createdAt = DateTime.MinValue, updatedAt = DateTime.MinValue;
@@ -87,7 +91,7 @@ namespace Resturaunt_Manage_System_Business_Layer
                     Name = name,
                     Description = description,
                     Price = price,
-                    Type = type,
+                    type = (enType)type,
                     ImageLink = imageLink,
                     IsAvailable = isAvailable,
                     CreatedAt = createdAt,
@@ -111,7 +115,7 @@ namespace Resturaunt_Manage_System_Business_Layer
                 m.Name = row.Field<string>("name");
                 m.Description = row.Field<string>("description"); // returns null if DBNull
                 m.Price = row.Field<decimal>("price");
-                m.Type = row.Field<string>("type");
+                m.type = row.Field<enType>("type");
                 m.ImageLink = row.Field<string>("image_link");
                 m.IsAvailable = row.Field<bool>("is_available");
                 m.CreatedAt = row.Field<DateTime>("created_at");
@@ -140,7 +144,7 @@ namespace Resturaunt_Manage_System_Business_Layer
                                              item.Name,
                                              item.Description,
                                              item.Price,
-                                             item.Type,
+                                             (int)item.type,
                                              item.ImageLink,
                                              item.IsAvailable);
         }
