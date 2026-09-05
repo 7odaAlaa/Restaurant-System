@@ -13,7 +13,11 @@ namespace Resturaunt_System
 {
     public partial class MenuItem : UserControl
     {
+        bool _UpdateMode = false;
         clsMenuItem _AnItem = null;
+
+        public Action<object , EventArgs > OnAddingMenuItem;
+
         public MenuItem()
         {
             InitializeComponent();
@@ -23,16 +27,16 @@ namespace Resturaunt_System
         public MenuItem(clsMenuItem AnItem)
         {
             InitializeComponent();
-            _AnItem = AnItem;
-
             LoadInfo(AnItem);
+
+            _AnItem = AnItem;
             
         }
 
        private void LoadInfo() 
        {
             setItemDetailsToolStripMenuItem.Text = "Set Details";
-            detailsToolStripMenuItem.Enabled = false;
+            detailsToolStripMenuItem.Enabled = false; 
        }
 
         public void LoadInfo(clsMenuItem AnItem) 
@@ -40,6 +44,8 @@ namespace Resturaunt_System
             setItemDetailsToolStripMenuItem.Text = "Update Details";
             pbMeal.ImageLocation = AnItem.ImageLink;
             lbItemName.Text = AnItem.Name;
+            _UpdateMode = true;
+            
         }
         
         private void detailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,8 +55,16 @@ namespace Resturaunt_System
 
         private void setOrEditItemDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           SetEditMenuItem frm = new SetEditMenuItem(_AnItem);
+            SetEditMenuItem frm = _UpdateMode ? new SetEditMenuItem(_AnItem) : new SetEditMenuItem();
             frm.ShowDialog();
+            OnAddingMenuItem.Invoke(sender, e);
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+
         }
     }
 }
