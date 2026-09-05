@@ -10,29 +10,131 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+//using TextBox = System.Windows.Forms.TextBox;
 
 namespace Resturaunt_System
 {
     public partial class SetEditMenuItem : Form
     {
+        enum enMode {Add , Update};
+
+        enMode _Mode;
         clsMenuItem _MenuItem = null;
 
-       
+        public SetEditMenuItem()
+        {
+            InitializeComponent();
+            _MenuItem = new clsMenuItem();
+            _Mode = enMode.Add;
+        }
+
         public SetEditMenuItem(clsMenuItem MenuItem)
         {
             InitializeComponent();
             _MenuItem = MenuItem;
+
+            _Mode = enMode.Update;
         }
 
-        public void LoadInfo() 
+        public void Reset() 
         {
+            lbTitile.Text = "Set Menu Item";
+
+            cbType.Items.Add("Italian");
+            cbType.Items.Add("Spanish");
+            cbType.Items.Add("French");
+
+            // Clear all text fields
+            txtName.Clear(); // Name
+            txtPrice.Clear(); // Price
+            txtDecription.Clear(); // Description
+
+            // Reset ComboBox to the first item
+         
+            cbType.SelectedIndex = 0;
+            
+
+            // Uncheck the CheckBox
+            CheckBoxIsAvilable.Checked = false;
+
+            // Clear the image preview (PictureBox)
+            pbMealImage.Image = null;
+
+            // Optional: Reset focus to the first input
+            txtName.Focus();
 
         }
+
+        public void LoadInfo()
+        {
+            if (_MenuItem == null)
+            {
+                MessageBox.Show("No MenuItem with Name : " + _MenuItem.Name, " Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+                return;
+            }
+
+            lbTitile.Text = "Update Menu Item";
+
+            txtName.Text = _MenuItem.Name;
+            txtDecription.Text = _MenuItem.Description;
+            txtPrice.Text = _MenuItem.Price.ToString();
+
+            CheckBoxIsAvilable.Checked = _MenuItem.IsAvailable;
+
+            switch (_MenuItem.type)
+            {
+                case clsMenuItem.enType.Italian:
+                    cbType.Text = "Italian";
+                    break;
+                case clsMenuItem.enType.Spanish:
+                    cbType.Text = "Spanish";
+                    break;
+                case clsMenuItem.enType.Frenech:
+                    cbType.Text = "Frenech";
+                    break;
+                default:
+                    cbType.Text = "";
+                    break;
+            }
+
+            if (_MenuItem.ImageLink != "")
+                pbMealImage.ImageLocation = _MenuItem.ImageLink;
+        }
+
+        private void SetEditMenuItem_Load(object sender, EventArgs e)
+        {
+            Reset();
+
+            if (_Mode == enMode.Update)
+                LoadInfo();
+        }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!_HandleMealImage())
                 return;
+
+            _MenuItem.Name = txtName.Text;
+            _MenuItem.Description = txtDecription.Text;
+            _MenuItem.Price = decimal.Parse(txtPrice.Text);
+            _MenuItem.IsAvailable = CheckBoxIsAvilable.Checked;
+            _MenuItem.type = (clsMenuItem.enType) (cbType.SelectedIndex + 1);
+            _MenuItem.ImageLink = pbMealImage.ImageLocation != null ? pbMealImage.ImageLocation : "";
+            _MenuItem.SupplierId = 1;
+            _MenuItem.CreatedAt = DateTime.Now;
+            _MenuItem.UpdatedAt = DateTime.Now;
+
+
+            if (_MenuItem.Save())
+            {
+                MessageBox.Show("Data Saved Successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show("Error: Data Is not Saved Successfully.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private bool _HandleMealImage()
@@ -105,35 +207,44 @@ namespace Resturaunt_System
             }
         }
 
-        private void SetEditMenuItem_Load(object sender, EventArgs e)
+      
+
+        private void ValidateEmptyTextBox(object sender, CancelEventArgs e)
         {
-            if(_MenuItem != null) 
+
+            // First: set AutoValidate property of your Form to EnableAllowFocusChange in designer 
+            TextBox Temp = ((TextBox)sender);
+            if (string.IsNullOrEmpty(Temp.Text.Trim()))
             {
-                txtName.Text = _MenuItem.Name;
-                txtDecription.Text = _MenuItem.Description;
-                txtPrice.Text =_MenuItem.Price.ToString();
+                e.Cancel = true;
+                errorProvider1.SetError(Temp, "This field is required!");
+            }
+            else
+            {
+                //e.Cancel = false;
+                errorProvider1.SetError(Temp, null);
+            }
 
-                CheckBoxIsAvilable.Checked = _MenuItem.IsAvailable;
+        }
 
-                switch (_MenuItem.type)
-                {
-                    case clsMenuItem.enType.Italian:
-                        cbType.Text = "Italian";
-                        break;
-                    case clsMenuItem.enType.Spanish:
-                        cbType.Text = "Spanish";
-                        break;
-                    case clsMenuItem.enType.Frenech:
-                        cbType.Text = "Frenech";
-                        break;
-                    default:
-                        cbType.Text = "";
-                        break;
-                }
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow control keys (Backspace, Delete, arrows, etc.)
+            if (char.IsControl(e.KeyChar))
+                return;
 
-                if (_MenuItem.ImageLink != "")
-                    pbMealImage.ImageLocation = _MenuItem.ImageLink;
+            // Allow only digits and one decimal point
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // Block invalid characters
+            }
+
+            // Block a second decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains('.'))
+            {
+                e.Handled = true; // Block the second dot
             }
         }
+    
     }
 }

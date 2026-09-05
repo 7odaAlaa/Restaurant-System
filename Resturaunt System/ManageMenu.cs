@@ -22,10 +22,14 @@ namespace Resturaunt_System
         {
             MenuItem menuItem = new MenuItem();
             flowLayoutPanel1.Controls.Add(menuItem);
+
+            menuItem.OnAddingMenuItem += ManageMenu_Load;
         }
 
         private void ManageMenu_Load(object sender, EventArgs e)
         {
+            flowLayoutPanel1.Controls.Clear();
+
             foreach (var item in clsMenuItem.GetAll()) 
             {
                 MenuItem menuItem = new MenuItem(item);
