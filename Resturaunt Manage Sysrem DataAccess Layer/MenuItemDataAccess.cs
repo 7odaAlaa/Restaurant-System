@@ -10,9 +10,9 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
 {
     public static class MenuItemDataAccess
     {
-        public static bool Insert(int supplierId, string name, string description,
+        public static int Insert(int supplierId, string name, string description,
                                   decimal price, int type, string imageLink,
-                                  bool isAvailable, ref int newItemId)
+                                  bool isAvailable)
         {
             try
             {
@@ -22,6 +22,9 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
                     VALUES (@SupplierId, @Name, @Description, @Price, @Type, @ImageLink, @IsAvailable, @CreatedAt, @UpdatedAt);
                     SELECT CAST(SCOPE_IDENTITY() AS INT);", conn))
                 {
+                    conn.Open();
+                    // ... run query .
+
                     cmd.Parameters.AddWithValue("@SupplierId", supplierId);
                     cmd.Parameters.AddWithValue("@Name", name);
                     cmd.Parameters.AddWithValue("@Description", (object)description ?? DBNull.Value);
@@ -32,13 +35,20 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
                     cmd.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
                     cmd.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
 
-                    newItemId = (int)cmd.ExecuteScalar();
-                    return true;
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+
+                    return -1; // Return -1 if the insert failed for some reason
+
                 }
             }
             catch
             {
-                return false;
+                return -1;
             }
         }
 
