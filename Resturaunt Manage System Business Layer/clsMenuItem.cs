@@ -10,25 +10,29 @@ namespace Resturaunt_Manage_System_Business_Layer
 {
     public class clsMenuItem
     {
+        enum enMode {Add , Update};
+        enMode _Mode;
+
         public enum enType { Italian = 1 , Spanish  = 2  , Frenech = 3}
 
 
-        public int ItemId { get; set; }
-        public int SupplierId { get; set; }
-        public string Name { get; set; } = "";
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public enType type { get; set; }
-        public string ImageLink { get; set; }
-        public bool IsAvailable { get; set; } = true;
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int ItemId { set; get; }
+        public int SupplierId { set; get; }
+        public string Name { set; get; } = "";
+        public string Description { set; get; }
+        public decimal Price { set; get; }
+        public enType type { set; get; }
+        public string ImageLink { set; get; }
+        public bool IsAvailable { set; get; } = true;
+        public DateTime CreatedAt { set; get; }
+        public DateTime UpdatedAt { set; get; }
 
 
         // Default constructor
         public clsMenuItem() 
         {
             ImageLink = "";
+            _Mode = enMode.Add;
         }
 
         // Parameterized constructor
@@ -36,32 +40,28 @@ namespace Resturaunt_Manage_System_Business_Layer
                         string description = null, string imageLink = null,
                         bool isAvailable = true)
         {
-            SupplierId = supplierId;
-            Name = name;
-            Price = price;
-            type = type;
-            Description = description;
-            ImageLink = imageLink;
-            IsAvailable = isAvailable;
+            this.SupplierId = supplierId;
+            this.Name = name;
+            this.Price = price;
+            this.type = type;
+            this.Description = description;
+            this.ImageLink = imageLink;
+            this.IsAvailable = isAvailable;
+            _Mode =enMode.Update;
         }
 
-        public static  clsMenuItem Insert( clsMenuItem item)
+        private  bool _Insert()
         {
             int newItemId = 0;
-            bool success = MenuItemDataAccess.Insert(item.SupplierId,
-                                                     item.Name,
-                                                     item.Description,
-                                                     item.Price,
-                                                     (int)item.type,
-                                                     item.ImageLink,
-                                                     item.IsAvailable,
-                                                     ref newItemId);
-            if (success)
-            {
-                item.ItemId = newItemId;
-                return item;
-            }
-            return null;
+
+            newItemId = MenuItemDataAccess.Insert(this.SupplierId,
+                                                     this.Name,
+                                                     this.Description,
+                                                     this.Price,
+                                                     (int)this.type,
+                                                     this.ImageLink,
+                                                     this.IsAvailable);
+            return newItemId != -1;
         }
 
         public static clsMenuItem GetById(int itemId)
@@ -137,21 +137,48 @@ namespace Resturaunt_Manage_System_Business_Layer
         */
 
         
-        public static bool Update(clsMenuItem item)
+        private bool _Update()
         {
-            return MenuItemDataAccess.Update(item.ItemId,
-                                             item.SupplierId,
-                                             item.Name,
-                                             item.Description,
-                                             item.Price,
-                                             (int)item.type,
-                                             item.ImageLink,
-                                             item.IsAvailable);
+            return MenuItemDataAccess.Update(this.ItemId,
+                                             this.SupplierId,
+                                             this.Name,
+                                             this.Description,
+                                             this.Price,
+                                             (int)this.type,
+                                             this.ImageLink,
+                                             this.IsAvailable);
         }
 
         public static bool Delete(int itemId)
         {
             return MenuItemDataAccess.Delete(itemId);
+        }
+
+
+        public bool Save() 
+        {
+            switch (_Mode)
+            {
+                case enMode.Add:
+                    if (_Insert())
+                    {
+
+                        _Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                case enMode.Update:
+
+                    return _Update();
+
+            }
+
+            return false;
+
         }
     }
 }
