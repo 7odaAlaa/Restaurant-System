@@ -60,7 +60,7 @@ namespace Resturaunt_System
             // project images foldr after renaming it
             // with GUID with the same extention, then it will update the sourceFileName with the new name.
 
-            string DestinationFolder = @"C:\DVLD-People-Images\";
+            string DestinationFolder = @"F:\Road Map\My Resturaunt\Images";
             if (!CreateFolderIfDoesNotExist(DestinationFolder))
             {
                 return false;

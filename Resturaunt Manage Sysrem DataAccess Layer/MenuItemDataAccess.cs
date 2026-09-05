@@ -11,7 +11,7 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
     public static class MenuItemDataAccess
     {
         public static bool Insert(int supplierId, string name, string description,
-                                  decimal price, string type, string imageLink,
+                                  decimal price, int type, string imageLink,
                                   bool isAvailable, ref int newItemId)
         {
             try
@@ -45,7 +45,7 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
         public static bool GetById(int itemId,
                                    ref int supplierId,
                                    ref string name, ref string description, ref decimal price,
-                                   ref string type,ref string imageLink,ref bool isAvailable,
+                                   ref int type,ref string imageLink,ref bool isAvailable,
                                    ref DateTime createdAt , ref DateTime updatedAt)
         {
             try
@@ -63,7 +63,7 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
                             name = reader.GetString(reader.GetOrdinal("name"));
                             description = reader.IsDBNull(reader.GetOrdinal("description")) ? null : reader.GetString(reader.GetOrdinal("description"));
                             price = reader.GetDecimal(reader.GetOrdinal("price"));
-                            type = reader.GetString(reader.GetOrdinal("type"));
+                            type = reader.GetInt32(reader.GetOrdinal("type"));
                             imageLink = reader.IsDBNull(reader.GetOrdinal("image_link")) ? null : reader.GetString(reader.GetOrdinal("image_link"));
                             isAvailable = reader.GetBoolean(reader.GetOrdinal("is_available"));
                             createdAt = reader.GetDateTime(reader.GetOrdinal("created_at"));
@@ -147,7 +147,7 @@ namespace Resturaunt_Manage_Sysrem_DataAccess_Layer
         */
 
         public static bool Update(int itemId, int supplierId, string name, string description,
-                                  decimal price, string type, string imageLink, bool isAvailable)
+                                  decimal price, int type, string imageLink, bool isAvailable)
         {
             try
             {
