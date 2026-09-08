@@ -17,7 +17,7 @@ namespace Resturaunt_Manage_System_Business_Layer
 
 
         public int ItemId { set; get; }
-        public int SupplierId { set; get; }
+        public clsSupplier Supplier { set; get; }
         public string Name { set; get; } = "";
         public string Description { set; get; }
         public decimal Price { set; get; }
@@ -32,6 +32,7 @@ namespace Resturaunt_Manage_System_Business_Layer
         public clsMenuItem() 
         {
             ImageLink = "";
+            Supplier = new clsSupplier(); 
             _Mode = enMode.Add;
         }
 
@@ -40,7 +41,7 @@ namespace Resturaunt_Manage_System_Business_Layer
                         string description = null, string imageLink = null,
                         bool isAvailable = true)
         {
-            this.SupplierId = supplierId;
+            this.Supplier = clsSupplier.GetById(supplierId);
             this.Name = name;
             this.Price = price;
             this.type = type;
@@ -50,19 +51,6 @@ namespace Resturaunt_Manage_System_Business_Layer
             _Mode =enMode.Update;
         }
 
-        private  bool _Insert()
-        {
-            int newItemId = 0;
-
-            newItemId = MenuItemDataAccess.Insert(this.SupplierId,
-                                                     this.Name,
-                                                     this.Description,
-                                                     this.Price,
-                                                     (int)this.type,
-                                                     this.ImageLink,
-                                                     this.IsAvailable);
-            return newItemId != -1;
-        }
 
         public static clsMenuItem GetById(int itemId)
         {
@@ -87,7 +75,7 @@ namespace Resturaunt_Manage_System_Business_Layer
                 return new clsMenuItem
                 {
                     ItemId = itemId,
-                    SupplierId = supplierId,
+                    Supplier = clsSupplier.GetById(supplierId),
                     Name = name,
                     Description = description,
                     Price = price,
@@ -111,7 +99,7 @@ namespace Resturaunt_Manage_System_Business_Layer
             {
                 clsMenuItem m = new clsMenuItem();
                 m.ItemId = row.Field<int>("item_id");
-                m.SupplierId = row.Field<int>("supplier_id");
+                m.Supplier = clsSupplier.GetById(row.Field<int>("supplier_id"));
                 m.Name = row.Field<string>("name");
                 m.Description = row.Field<string>("description"); // returns null if DBNull
                 m.Price = row.Field<decimal>("price");
@@ -120,12 +108,13 @@ namespace Resturaunt_Manage_System_Business_Layer
                 m.IsAvailable = row.Field<bool>("is_available");
                 m.CreatedAt = row.Field<DateTime>("created_at");
                 m.UpdatedAt = row.Field<DateTime>("updated_at");
+                m._Mode = enMode.Update;
                 items.Add(m);
             }
 
             return  items;
         }
-        
+
 
         /*
         public static List<MenuItem> GetBySupplier(int supplierId)
@@ -136,11 +125,25 @@ namespace Resturaunt_Manage_System_Business_Layer
         }
         */
 
-        
+
+        private bool _Insert()
+        {
+            int newItemId = 0;
+
+            newItemId = MenuItemDataAccess.Insert(this.Supplier.SupplierId,
+                                                     this.Name,
+                                                     this.Description,
+                                                     this.Price,
+                                                     (int)this.type,
+                                                     this.ImageLink,
+                                                     this.IsAvailable);
+            return newItemId != -1;
+        }
+
         private bool _Update()
         {
             return MenuItemDataAccess.Update(this.ItemId,
-                                             this.SupplierId,
+                                             this.Supplier.SupplierId,
                                              this.Name,
                                              this.Description,
                                              this.Price,
@@ -149,21 +152,21 @@ namespace Resturaunt_Manage_System_Business_Layer
                                              this.IsAvailable);
         }
 
-        public static bool Delete(int itemId)
+        public  bool Delete()
         {
-            return MenuItemDataAccess.Delete(itemId);
+            return MenuItemDataAccess.Delete(this.ItemId);
         }
 
 
         public bool Save() 
         {
-            switch (_Mode)
+            switch (this._Mode)
             {
                 case enMode.Add:
                     if (_Insert())
                     {
 
-                        _Mode = enMode.Update;
+                        this._Mode = enMode.Update;
                         return true;
                     }
                     else
