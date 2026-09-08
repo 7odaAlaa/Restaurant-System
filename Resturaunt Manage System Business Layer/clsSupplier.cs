@@ -1,7 +1,9 @@
 ﻿using Resturaunt_Manage_Sysrem_DataAccess_Layer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,22 +35,7 @@ namespace Resturaunt_Manage_System_Business_Layer
             Address = address;
         }
 
-        public static clsSupplier Insert(clsSupplier supplier)
-        {
-            int newSupplierId = 0;
-            bool success = SupplierDataAccess.Insert(supplier.SupplierName,
-                                                     supplier.ContactPhone,
-                                                     supplier.ContactEmail,
-                                                     supplier.Address,
-                                                     supplier.Type,
-                                                     ref newSupplierId);
-            if (success)
-            {
-                supplier.SupplierId = newSupplierId;
-                return supplier;
-            }
-            return null;
-        }
+   
 
         public static clsSupplier GetById(int supplierId)
         {
@@ -78,14 +65,76 @@ namespace Resturaunt_Manage_System_Business_Layer
             return null;
         }
 
-        /*
-        public static List<clsSupplier> GetAll()
+        public static clsSupplier GetByName(string supplierName)
         {
-            List<clsSupplier> suppliers = null;
-            bool success = SupplierDataAccess.GetAll(ref suppliers);
-            return success ? suppliers : new List<clsSupplier>();
+            int supplierId = 0;
+            string contactPhone = "", contactEmail = "", address = "", type = "";
+            DateTime createdAt = DateTime.MinValue;
+
+            bool found = SupplierDataAccess.GetByName(supplierName,
+                                                      ref supplierId,
+                                                      ref contactPhone,
+                                                      ref contactEmail,
+                                                      ref address,
+                                                      ref type,
+                                                      ref createdAt);
+            if (found)
+            {
+                return new clsSupplier
+                {
+                    SupplierId = supplierId,
+                    SupplierName = supplierName,
+                    ContactPhone = contactPhone,
+                    ContactEmail = contactEmail,
+                    Address = address,
+                    Type = type,
+                    CreatedAt = createdAt
+                };
+            }
+            return null;
         }
-        */
+
+
+        public static List<clsSupplier> GetAll()
+
+        {
+            List<clsSupplier> suppliers = new List<clsSupplier>();
+
+            DataTable SupplierTable = SupplierDataAccess.GetAll();
+
+            foreach (DataRow row in SupplierTable.Rows)
+            {
+                var s = new clsSupplier();
+                s.SupplierId = row.Field<int>("supplier_id");
+                s.SupplierName = row.Field<string>("supplier_name");
+                s.ContactPhone = row.Field<string>("contact_phone");
+                s.ContactEmail = row.Field<string>("contact_email");
+                s.Address = row.Field<string>("address");
+                s.Type = row.Field<string>("type");
+                s.CreatedAt = row.Field<DateTime>("created_at");
+                suppliers.Add(s);
+            }
+
+            return suppliers;
+           
+        }
+
+        public static clsSupplier Insert(clsSupplier supplier)
+        {
+            int newSupplierId = 0;
+            bool success = SupplierDataAccess.Insert(supplier.SupplierName,
+                                                     supplier.ContactPhone,
+                                                     supplier.ContactEmail,
+                                                     supplier.Address,
+                                                     supplier.Type,
+                                                     ref newSupplierId);
+            if (success)
+            {
+                supplier.SupplierId = newSupplierId;
+                return supplier;
+            }
+            return null;
+        }
 
         public static bool Update(clsSupplier supplier)
         {
