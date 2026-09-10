@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|f:\\road map\\my resturaunt\\resturaunt system\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|f:\\road map\\my resturaunt\\resturaunt system\\seteditmenuitem.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
+      "RelativeMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|solutionrelative:seteditmenuitem.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|f:\\road map\\my resturaunt\\resturaunt system\\seteditmenuitem.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|solutionrelative:seteditmenuitem.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|f:\\road map\\my resturaunt\\resturaunt system\\clsutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|solutionrelative:clsutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|f:\\road map\\my resturaunt\\resturaunt system\\clsvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75DD2A6C-71A8-413F-B39D-874A219A772D}|Resturaunt System.csproj|solutionrelative:clsvalidation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +35,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Main.cs [Design]",
-              "DocumentMoniker": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\Main.cs",
-              "RelativeDocumentMoniker": "Main.cs",
-              "ToolTip": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\Main.cs [Design]",
-              "RelativeToolTip": "Main.cs [Design]",
+              "Title": "SetEditMenuItem.resx",
+              "DocumentMoniker": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\SetEditMenuItem.resx",
+              "RelativeDocumentMoniker": "SetEditMenuItem.resx",
+              "ToolTip": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\SetEditMenuItem.resx",
+              "RelativeToolTip": "SetEditMenuItem.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2026-09-10T20:36:37.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SetEditMenuItem.Designer.cs",
+              "DocumentMoniker": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\SetEditMenuItem.Designer.cs",
+              "RelativeDocumentMoniker": "SetEditMenuItem.Designer.cs",
+              "ToolTip": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\SetEditMenuItem.Designer.cs",
+              "RelativeToolTip": "SetEditMenuItem.Designer.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-20T21:01:54.235Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-09-10T20:36:34.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "clsUtil.cs",
+              "DocumentMoniker": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\clsUtil.cs",
+              "RelativeDocumentMoniker": "clsUtil.cs",
+              "ToolTip": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\clsUtil.cs",
+              "RelativeToolTip": "clsUtil.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:36:13.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "clsValidation.cs",
+              "DocumentMoniker": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\clsValidation.cs",
+              "RelativeDocumentMoniker": "clsValidation.cs",
+              "ToolTip": "F:\\Road Map\\My Resturaunt\\Resturaunt System\\clsValidation.cs",
+              "RelativeToolTip": "clsValidation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:36:11.873Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChefDataAccess.cs" />
     <Compile Include="CustomerDataAccess.cs" />
     <Compile Include="DbHelper.cs" />
     <Compile Include="EmployeeDataAccess.cs" />

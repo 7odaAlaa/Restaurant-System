@@ -9,6 +9,7 @@ namespace Resturaunt_Manage_System_Business_Layer
 {
     public class clsChef : clsEmployee
     {
+        /*
         public string Specialty { get; set; } = "";
         public string CertificationLevel { get; set; }
 
@@ -92,6 +93,7 @@ namespace Resturaunt_Manage_System_Business_Layer
         }
         */
 
+        /*
         public static bool Update(clsChef chef)
         {
             return ChefDataAccess.Update(chef.EmployeeId,
@@ -108,5 +110,6 @@ namespace Resturaunt_Manage_System_Business_Layer
         {
             return ChefDataAccess.Delete(employeeId);
         }
+        */
     }
 }

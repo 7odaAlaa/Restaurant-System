@@ -28,21 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtDecription = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbMealImage = new System.Windows.Forms.PictureBox();
             this.lbName = new System.Windows.Forms.Label();
             this.lbType = new System.Windows.Forms.Label();
             this.lbDecription = new System.Windows.Forms.Label();
             this.lbPrice = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.CheckBoxIsAvilable = new System.Windows.Forms.CheckBox();
             this.lbTitile = new System.Windows.Forms.Label();
             this.linkLabelSetEditImage = new System.Windows.Forms.LinkLabel();
             this.linkLabelRemove = new System.Windows.Forms.LinkLabel();
             this.btnSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cbType = new System.Windows.Forms.ComboBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMealImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtName
@@ -52,46 +56,42 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(205, 24);
             this.txtName.TabIndex = 0;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
-            // textBox2
+            // txtPrice
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(496, 114);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 24);
-            this.textBox2.TabIndex = 0;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(161, 115);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(205, 24);
-            this.textBox3.TabIndex = 0;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(496, 114);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(121, 24);
+            this.txtPrice.TabIndex = 0;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
+            this.txtPrice.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateEmptyTextBox);
             // 
             // txtDecription
             // 
             this.txtDecription.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDecription.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.txtDecription.Location = new System.Drawing.Point(161, 145);
+            this.txtDecription.Location = new System.Drawing.Point(161, 155);
             this.txtDecription.Multiline = true;
             this.txtDecription.Name = "txtDecription";
             this.txtDecription.Size = new System.Drawing.Size(456, 56);
             this.txtDecription.TabIndex = 0;
             // 
-            // pictureBox1
+            // pbMealImage
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(662, 45);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(229, 156);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pbMealImage.Location = new System.Drawing.Point(662, 45);
+            this.pbMealImage.Name = "pbMealImage";
+            this.pbMealImage.Size = new System.Drawing.Size(229, 156);
+            this.pbMealImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMealImage.TabIndex = 2;
+            this.pbMealImage.TabStop = false;
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(52, 83);
+            this.lbName.Location = new System.Drawing.Point(52, 77);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(93, 33);
             this.lbName.TabIndex = 3;
@@ -101,7 +101,7 @@
             // 
             this.lbType.AutoSize = true;
             this.lbType.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbType.Location = new System.Drawing.Point(62, 114);
+            this.lbType.Location = new System.Drawing.Point(62, 111);
             this.lbType.Name = "lbType";
             this.lbType.Size = new System.Drawing.Size(83, 33);
             this.lbType.TabIndex = 3;
@@ -111,7 +111,7 @@
             // 
             this.lbDecription.AutoSize = true;
             this.lbDecription.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDecription.Location = new System.Drawing.Point(6, 147);
+            this.lbDecription.Location = new System.Drawing.Point(6, 149);
             this.lbDecription.Name = "lbDecription";
             this.lbDecription.Size = new System.Drawing.Size(139, 33);
             this.lbDecription.TabIndex = 3;
@@ -127,22 +127,22 @@
             this.lbPrice.TabIndex = 3;
             this.lbPrice.Text = "Price : ";
             // 
-            // checkBox1
+            // CheckBoxIsAvilable
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(496, 72);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(121, 37);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "IsAvilable";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.CheckBoxIsAvilable.AutoSize = true;
+            this.CheckBoxIsAvilable.Font = new System.Drawing.Font("Segoe Print", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CheckBoxIsAvilable.Location = new System.Drawing.Point(496, 72);
+            this.CheckBoxIsAvilable.Name = "CheckBoxIsAvilable";
+            this.CheckBoxIsAvilable.Size = new System.Drawing.Size(121, 37);
+            this.CheckBoxIsAvilable.TabIndex = 1;
+            this.CheckBoxIsAvilable.Text = "IsAvilable";
+            this.CheckBoxIsAvilable.UseVisualStyleBackColor = true;
             // 
             // lbTitile
             // 
             this.lbTitile.AutoSize = true;
             this.lbTitile.Font = new System.Drawing.Font("Segoe Print", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitile.Location = new System.Drawing.Point(311, 9);
+            this.lbTitile.Location = new System.Drawing.Point(297, 9);
             this.lbTitile.Name = "lbTitile";
             this.lbTitile.Size = new System.Drawing.Size(239, 51);
             this.lbTitile.TabIndex = 3;
@@ -186,12 +186,34 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // cbType
+            // 
+            this.cbType.AutoCompleteCustomSource.AddRange(new string[] {
+            "Italian ",
+            "Spanish ",
+            "French"});
+            this.cbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbType.FormattingEnabled = true;
+            this.cbType.Location = new System.Drawing.Point(161, 117);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(205, 26);
+            this.cbType.TabIndex = 6;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // SetEditMenuItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCyan;
             this.ClientSize = new System.Drawing.Size(906, 261);
+            this.Controls.Add(this.cbType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.linkLabelRemove);
             this.Controls.Add(this.linkLabelSetEditImage);
@@ -200,15 +222,16 @@
             this.Controls.Add(this.lbType);
             this.Controls.Add(this.lbTitile);
             this.Controls.Add(this.lbName);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.pbMealImage);
+            this.Controls.Add(this.CheckBoxIsAvilable);
             this.Controls.Add(this.txtDecription);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.txtName);
             this.Name = "SetEditMenuItem";
             this.Text = "SetEditMenuItem";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Load += new System.EventHandler(this.SetEditMenuItem_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMealImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,18 +240,20 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtDecription;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbMealImage;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbType;
         private System.Windows.Forms.Label lbDecription;
         private System.Windows.Forms.Label lbPrice;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox CheckBoxIsAvilable;
         private System.Windows.Forms.Label lbTitile;
         private System.Windows.Forms.LinkLabel linkLabelSetEditImage;
         private System.Windows.Forms.LinkLabel linkLabelRemove;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ComboBox cbType;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -34,6 +34,7 @@
             this.detailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setItemDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbItemName = new System.Windows.Forms.Label();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbMeal)).BeginInit();
             this.contextMenuStripMenuItemDetails.SuspendLayout();
             this.SuspendLayout();
@@ -43,6 +44,7 @@
             this.pbMeal.Location = new System.Drawing.Point(3, 3);
             this.pbMeal.Name = "pbMeal";
             this.pbMeal.Size = new System.Drawing.Size(258, 127);
+            this.pbMeal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbMeal.TabIndex = 0;
             this.pbMeal.TabStop = false;
             // 
@@ -50,9 +52,10 @@
             // 
             this.contextMenuStripMenuItemDetails.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.detailsToolStripMenuItem,
+            this.deleteToolStripMenuItem,
             this.setItemDetailsToolStripMenuItem});
             this.contextMenuStripMenuItemDetails.Name = "contextMenuStripMenuItemDetails";
-            this.contextMenuStripMenuItemDetails.Size = new System.Drawing.Size(156, 48);
+            this.contextMenuStripMenuItemDetails.Size = new System.Drawing.Size(156, 70);
             this.contextMenuStripMenuItemDetails.Text = "MenuItemDetails";
             // 
             // detailsToolStripMenuItem
@@ -73,11 +76,18 @@
             // 
             this.lbItemName.AutoSize = true;
             this.lbItemName.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbItemName.Location = new System.Drawing.Point(110, 133);
+            this.lbItemName.Location = new System.Drawing.Point(68, 133);
             this.lbItemName.Name = "lbItemName";
             this.lbItemName.Size = new System.Drawing.Size(50, 27);
             this.lbItemName.TabIndex = 2;
             this.lbItemName.Text = "[???]";
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // MenuItem
             // 
@@ -101,5 +111,6 @@
         private System.Windows.Forms.ToolStripMenuItem detailsToolStripMenuItem;
         private System.Windows.Forms.Label lbItemName;
         private System.Windows.Forms.ToolStripMenuItem setItemDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
